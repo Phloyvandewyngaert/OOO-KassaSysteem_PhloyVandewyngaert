@@ -1,0 +1,57 @@
+OOO
+3 delen: = 5/20
+	Klassendiagram --> volledig uitgewerkt
+	Verslag --> adhv template
+	Code -->gebruikt OOO patronen & princiepes
+
+
+OPDRACHT
+kassa
+kassier = admin
+artiekel: 	streepjes code (text vak)
+		6% btw incl = verkoopsprijs
+		omschrijving
+		artiekel groep
+		voorraad
+		--> moet allemaal in textbestand/excel bestand
+		bij opstarten ingelezen in inmemory db(hashmap) altijd open
+		afsluiten app --> voorraad gegevens aangepast in text/excel bestand
+		artikelen toevoegen/ verwijderen, prijsaanpassingen, --> niet via app maar via text/ excel
+
+verkoop --> geen klanten gegevens
+winkelkar
+
+updaten van views --> observer pattern
+min 1 facade voor functionaliteiten (=model)
+mvc partoon
+probeer : Strategy, Factory, Adapter, Singleton, Decorator, State, Enum, reflection, properties te gebruiken
+
+
+UI
+2 stages (vensters) (zie dobbelsteen oef observer design pattren)
+	Venster 1: (kassa view)
+		Tab 1: kassascherm
+			textvak intijpen artiekelcodes
+			enter --> product toegevoegd aan lijst gescande prod (tableview)
+			totaalprijs bijgewekt op scherm
+		
+		Tab 2: tableview van alle prod (artiekelenlijst)
+			alfabetisch
+			voor art te raadplegen
+			winkel kar leeg --> voorraad aangepast
+
+		Tab 3: instellingen
+			artieken bijhouden in text/excel
+			kortingen
+		Tab 4: log
+			overzicht verkochte art (datum + tijdstip)
+			per gescande art --> bijgewerkt
+			afsluiten app --> niet bijhouden
+
+	Venster 2: klant view
+		kassa ticket:
+			per gescande art bijgewerkt
+			totaalprijs ook per gescand art bijgewerkt
+
+			
+			
