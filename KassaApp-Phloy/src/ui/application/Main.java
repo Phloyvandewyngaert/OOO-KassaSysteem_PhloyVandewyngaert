@@ -1,9 +1,13 @@
 package ui.application;
 	
+import controller.Controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.db.InMemArtDb;
 import ui.view.panels.KassaView;
 import ui.view.panels.KlantView;
+
+import java.io.FileNotFoundException;
 
 public class Main extends Application {
 	@Override
