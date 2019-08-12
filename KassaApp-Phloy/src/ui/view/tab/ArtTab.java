@@ -24,21 +24,26 @@ public class ArtTab extends GridPane {
         this.add(new Label("Artikelen"),0,0,1,1);
 
         TableColumn code = new TableColumn<>("code");
-        TableColumn omschrijving = new TableColumn<>("omschrijving");
-        TableColumn groep = new TableColumn<>("groep");
-        TableColumn prijs = new TableColumn<>("prijs");
-        TableColumn voorraad = new TableColumn<>("voorraad");
-
         code.setCellValueFactory(new PropertyValueFactory<>("code"));
+
+        TableColumn omschrijving = new TableColumn<>("omschrijving");
         omschrijving.setCellValueFactory(new PropertyValueFactory<>("omschrijving"));
+
+        TableColumn groep = new TableColumn<>("groep");
         groep.setCellValueFactory(new PropertyValueFactory<>("groep"));
+
+        TableColumn prijs = new TableColumn<>("prijs");
         prijs.setCellValueFactory(new PropertyValueFactory<>("prijs"));
+
+        TableColumn voorraad = new TableColumn<>("voorraad");
         voorraad.setCellValueFactory(new PropertyValueFactory<>("voorraad"));
 
         kader = new TableView<String>();
         kader.setPrefWidth(REMAINING);
         kader.setItems(controller.getArtiekelen());
         kader.getColumns().addAll(code,omschrijving,groep,prijs,voorraad);
+        kader.getSortOrder().add(omschrijving);
+
         this.add(kader, 0, 1, 2, 6);
     }
 }

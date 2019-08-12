@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ui.view.tab.ArtTab;
+import ui.view.tab.InstellingenTab;
 
 import java.io.FileNotFoundException;
 
@@ -22,7 +23,8 @@ public class KassaView {
 
 		Controller c = new Controller();
 		ArtTab at = new ArtTab(c);
-		BorderPane borderPane = new KassaMainPane(at);
+		InstellingenTab it = new InstellingenTab();
+		BorderPane borderPane = new KassaMainPane(at, it);
 
 		borderPane.prefHeightProperty().bind(scene.heightProperty());
 		borderPane.prefWidthProperty().bind(scene.widthProperty());

@@ -1,17 +1,22 @@
 package ui.application;
 	
 import controller.Controller;
+import controller.LoadSaveFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.db.InMemArtDb;
 import ui.view.panels.KassaView;
 import ui.view.panels.KlantView;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 
 public class Main extends Application {
+	private LoadSaveFactory f = new LoadSaveFactory();
+	private Controller c = new Controller();
+
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+		f.createLoadSave(c.readFromProperties());
+
 		KassaView kassaView = new KassaView();
 		KlantView klantView = new KlantView();
 	}

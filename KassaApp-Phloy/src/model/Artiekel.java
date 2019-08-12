@@ -6,7 +6,7 @@ import controller.Observer;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class Artiekel implements Observable {
+public class Artiekel implements Observable, Comparable<Artiekel> {
     // lijst van alle observers (users die geintresserd zijn in het weten wanneer een nieuwe artikel komt)
     private ArrayList<Observer> users = new ArrayList<Observer>();
 
@@ -132,5 +132,17 @@ public class Artiekel implements Observable {
                 ", prijs=" + prijs +
                 ", voorraad=" + voorraad +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Artiekel o) {
+
+        if(getOmschrijving().toLowerCase().equals(o.getOmschrijving().toLowerCase())){
+            return 0;
+        }else {
+            return getOmschrijving().toLowerCase().compareTo(o.getOmschrijving().toLowerCase());
+        }
+
+
     }
 }
