@@ -21,7 +21,7 @@ public class ArtTab extends GridPane {
         this.setVgap(5);
         this.setHgap(5);
 
-        this.add(new Label("Artikelen"),0,0,1,1);
+        this.add(new Label("Artikelen: "),0,0,1,1);
 
         TableColumn code = new TableColumn<>("code");
         code.setCellValueFactory(new PropertyValueFactory<>("code"));

@@ -24,6 +24,7 @@ public class Controller {
 
         ObservableList<Artiekel>artiekels = FXCollections.observableArrayList();
 
+        //artiekelen halen in een map
         loadSaveFactory.createLoadSave(readFromProperties()).load(loadSaveFactory.getFile()).forEach((key, value) -> {
             //ArrayList<String> test = new ArrayList<String>();
 

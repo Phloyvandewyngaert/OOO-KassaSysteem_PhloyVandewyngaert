@@ -4,8 +4,10 @@ import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.*;
@@ -20,14 +22,14 @@ public class InstellingenTab extends GridPane{
         this.setVgap(5);
         this.setHgap(5);
 
-        this.add(new Label("Ik wil mijn gegeven uithalen via een "), 0, 0, 1, 1);
+        Label label = new Label("Ik wil mijn gegeven uithalen via een ");
 
         TextField text = new TextField();
         Button button = new Button("Opslagen");
 
-        VBox vbox = new VBox(text,button);
+        HBox hbox = new HBox(label,text,button);
 
-        this.add(vbox, 0, 2, 1, 1);
+        this.add(hbox, 0, 2, 1, 1);
 
         button.setOnMouseClicked((e) -> {
             String soort = text.getText();
