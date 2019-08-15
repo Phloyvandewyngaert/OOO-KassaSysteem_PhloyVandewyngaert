@@ -1,16 +1,9 @@
 package controller;
 
-import com.sun.xml.internal.bind.util.Which;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import model.Artiekel;
-import model.db.LoadSaveTxtStrategy;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -22,7 +15,7 @@ public class Controller {
         // set key and value
         prop.setProperty("type", s);
 
-        File file = new File("propertiesFile");
+        File file = new File("KassaApp-Phloy/propertiesFile");
         OutputStream output = null;
         try {
             output = new FileOutputStream(file);
@@ -38,7 +31,7 @@ public class Controller {
 
         String bestand = "";
 
-        File file = new File("propertiesFile");
+        File file = new File("KassaApp-Phloy/propertiesFile");
         Scanner scanner = new Scanner(file);
 
         while(scanner.hasNextLine()){

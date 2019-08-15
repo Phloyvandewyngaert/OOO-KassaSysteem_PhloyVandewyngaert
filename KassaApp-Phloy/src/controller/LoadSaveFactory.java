@@ -31,9 +31,9 @@ public class LoadSaveFactory {
         File f;
 
         if (l instanceof LoadSaveExcelStrategy){
-            f = new File("artikel.xls");
+            f = new File("KassaApp-Phloy/artikel.xls");
         }else if(l instanceof LoadSaveTxtStrategy){
-            f = new File ("artiekel.txt");
+            f = new File ("KassaApp-Phloy/artiekel.txt");
         }else throw new FileNotFoundException("somthing whent wrong");
         return f;
     }

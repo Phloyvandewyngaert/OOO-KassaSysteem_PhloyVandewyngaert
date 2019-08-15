@@ -119,6 +119,7 @@ public class Service implements Observable {
                 art = (Artiekel) i.next();
                 if (art.getCode().equals(code)) {
                     i.remove();
+                    break;
                 }
             }
             artiekels.clear();
