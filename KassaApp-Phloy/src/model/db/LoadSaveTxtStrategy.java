@@ -2,6 +2,8 @@ package model.db;
 
 import controller.LoadSaveFactory;
 import controller.Observer;
+import jxl.read.biff.BiffException;
+import jxl.write.WriteException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class LoadSaveTxtStrategy implements Observer, LoadSaveStrategy {
+public class LoadSaveTxtStrategy implements LoadSaveStrategy {
     private LoadSaveFactory loadSaveFactory;
 
     @Override
@@ -41,7 +43,7 @@ public class LoadSaveTxtStrategy implements Observer, LoadSaveStrategy {
         }
         return artikeles;
     }
-
+/*
     @Override
     public void updateOmschrijving(String code, String omschrijving) throws FileNotFoundException{
 
@@ -91,7 +93,7 @@ public class LoadSaveTxtStrategy implements Observer, LoadSaveStrategy {
             throw new IllegalArgumentException("deze code bestaat al");
         }
     }
-
+*/
     @Override
     public void save(File file, ArrayList<ArrayList<String>> args) throws IOException {
         for (ArrayList<String> line: args) {
@@ -107,6 +109,5 @@ public class LoadSaveTxtStrategy implements Observer, LoadSaveStrategy {
             writer.close();
         }
         }
-
 
 }

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LoadSaveExcelStrategy implements Observer, LoadSaveStrategy{// adapter
+public class LoadSaveExcelStrategy implements LoadSaveStrategy{// adapter
 
     private ExcelPlugin excelPlugin;
 
@@ -56,25 +56,5 @@ public class LoadSaveExcelStrategy implements Observer, LoadSaveStrategy{// adap
             e.printStackTrace();
         }
         return artiekels;
-    }
-
-    @Override
-    public void updateOmschrijving(String code, String omschrijving) throws FileNotFoundException {
-
-    }
-
-    @Override
-    public void updateGroep(String code, String groep) throws FileNotFoundException {
-
-    }
-
-    @Override
-    public void updatePijs(String code, double prijs) throws FileNotFoundException {
-
-    }
-
-    @Override
-    public void updateVoorraad(String code, int voorraad) throws FileNotFoundException {
-
     }
 }

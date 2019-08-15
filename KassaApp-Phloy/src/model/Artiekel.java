@@ -6,7 +6,8 @@ import controller.Observer;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class Artiekel implements Observable, Comparable<Artiekel> {
+public class Artiekel {
+
     // lijst van alle observers (users die geintresserd zijn in het weten wanneer een nieuwe artikel komt)
     private ArrayList<Observer> users = new ArrayList<Observer>();
 
@@ -35,13 +36,14 @@ public class Artiekel implements Observable, Comparable<Artiekel> {
     }
 
     public String getCode() {
-        return code;
+
+        return this.code;
     }
 
     public void setCode(String code) throws FileNotFoundException {
         if(code.trim().isEmpty()) throw new IllegalArgumentException("code mag iet leeg zijn");
         this.code = code;
-        notifyObersver();
+       // notifyObersver();
     }
 
 
@@ -61,7 +63,7 @@ public class Artiekel implements Observable, Comparable<Artiekel> {
     public void setGroep(String groep) throws FileNotFoundException {
         if(groep.trim().isEmpty()) throw new IllegalArgumentException("groep mag iet leeg zijn");
         this.groep = groep;
-        notifyObersver();
+        //notifyObersver();
     }
 
     public double getPrijs() {
@@ -73,14 +75,14 @@ public class Artiekel implements Observable, Comparable<Artiekel> {
         double nieuwePrijs = Double.parseDouble(prijs);
         if(nieuwePrijs <= 0 ) throw new IllegalArgumentException("prijs mag niet negatief zijn");
         this.prijs = nieuwePrijs;
-        notifyObersver();
+        //notifyObersver();
     }
 
     public void setPrijs(double prijs) throws FileNotFoundException {
 
         if(prijs <= 0 ) throw new IllegalArgumentException("prijs mag niet negatief zijn");
         this.prijs = prijs;
-        notifyObersver();
+        //notifyObersver();
     }
 
     public int getVoorraad() {
@@ -92,16 +94,16 @@ public class Artiekel implements Observable, Comparable<Artiekel> {
         int nieuweVoorraad = Integer.parseInt(voorraad);
         if(nieuweVoorraad <= 0 ) throw new IllegalArgumentException("voorraad mag niet negatief zijn");
         this.voorraad = nieuweVoorraad;
-        notifyObersver();
+        //notifyObersver();
     }
 
     public void setVoorraad(int voorraad) throws FileNotFoundException {
 
         if(voorraad <= 0 ) throw new IllegalArgumentException("voorraad mag niet negatief zijn");
         this.voorraad = voorraad;
-        notifyObersver();
+       // notifyObersver();
     }
-
+/*
     @Override // user toevoegen
     public void addObserver(Observer o) {
         users.add(o);
@@ -145,4 +147,5 @@ public class Artiekel implements Observable, Comparable<Artiekel> {
 
 
     }
+    */
 }

@@ -1,6 +1,7 @@
 package ui.view.tab;
 
 import controller.Controller;
+import controller.Service;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -14,9 +15,12 @@ public class ArtTab extends GridPane {
 
     private TableView kader;
     private Controller controller;
+    private Service service;
+
 
     public ArtTab (Controller controller) throws FileNotFoundException {
         this.controller = controller;
+        this.service = new Service();
         this.setPadding(new Insets(5,5,5,5));
         this.setVgap(5);
         this.setHgap(5);
@@ -40,7 +44,7 @@ public class ArtTab extends GridPane {
 
         kader = new TableView<String>();
         kader.setPrefWidth(REMAINING);
-        kader.setItems(controller.getArtiekelen());
+        kader.setItems(service.getArtiekelenObList());
         kader.getColumns().addAll(code,omschrijving,groep,prijs,voorraad);
         kader.getSortOrder().add(omschrijving);
 

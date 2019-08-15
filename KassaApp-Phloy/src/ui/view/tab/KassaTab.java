@@ -1,9 +1,11 @@
 package ui.view.tab;
 
-import controller.Controller;
+import controller.Observable;
+import controller.Observer;
 import controller.Service;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -16,61 +18,84 @@ import model.Artiekel;
 
 import java.io.FileNotFoundException;
 
-public class KassaTab extends GridPane {
+public class KassaTab extends GridPane implements Observer {
 
     private Service service;
-    private TableView kader;
-    private ObservableList<Artiekel> artiekels = FXCollections.observableArrayList();
+    private TableView<Artiekel> kader;
+    private TextField codeTextField;
+    private Label codeLabel;
+    private Button bevestig;
+    private Button delete;
+    private Label error;
+    private Label totaal;
 
-    public KassaTab() {
+    public KassaTab() throws FileNotFoundException {
         this.service = new Service();
-        this.setPadding(new Insets(5,5,5,5));
+        this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
 
-        Label label = new Label("Artiekel code ");
-        TextField text = new TextField();
-        Button button = new Button("bevestig");
 
-        Label error = new Label("Deze code bestaat niet");
+        codeLabel = new Label("Artiekel code ");
+        codeTextField = new TextField();
+        bevestig = new Button("bevestig");
+        delete = new Button("delete");
+        error = new Label("Deze code bestaat niet");
         error.setVisible(false);
+        totaal = new Label();
+        kader = new TableView<>();
+        this.kader.setPrefWidth(REMAINING);
+        TableColumn omschrijving = new TableColumn<>("omschrijving");
+        omschrijving.setCellValueFactory(new PropertyValueFactory<>("omschrijving"));
+        TableColumn prijs = new TableColumn<>("prijs");
+        prijs.setCellValueFactory(new PropertyValueFactory<>("prijs"));
+        kader.getColumns().addAll(omschrijving, prijs);
 
-        HBox hbox = new HBox(label,text,button,error);
-
+        HBox hbox = new HBox(codeLabel, codeTextField, bevestig, error, delete);
         this.add(hbox, 0, 2, 1, 1);
 
-        Label totaal = new Label();
 
-        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        bevestig.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
                 totaal.setText("");
-                String code = text.getText();
+                totaal.setText("Totaal " + service.getTotalPriceFromObList());
+                String artCode = codeTextField.getText();
 
                 try {
-                    if (!service.bestaandeArt(code)) {
-                       error.setVisible(true);
+                    if (!service.bestaandeArt(artCode)) {
+                        error.setVisible(true);
                     }
-
                     error.setVisible(false);
-                    TableColumn omschrijving = new TableColumn<>("omschrijving");
-                    omschrijving.setCellValueFactory(new PropertyValueFactory<>("omschrijving"));
+                    //artiekel toevoegen
+                    kader.setItems(service.addArtToObList(artCode));
+                    VBox vbox = new VBox(kader, totaal);
 
-                    TableColumn prijs = new TableColumn<>("prijs");
-                    prijs.setCellValueFactory(new PropertyValueFactory<>("prijs"));
+                    add(vbox, 0, 6, 2, 2);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IllegalArgumentException e) {
+                    error.setVisible(true);
+                }
+            }
+        });
 
-                    kader = new TableView<String>();
-                    kader.setPrefWidth(REMAINING);
-                    //try {
-                        artiekels.add(service.getArtikel(code));
-                        kader.setItems(artiekels);
-                    //} catch (FileNotFoundException e1) {
-                      //  e1.printStackTrace();
-                   // }
-                    kader.getColumns().addAll(omschrijving, prijs);
+        delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                    totaal.setText("Totaal " + service.getTotalPrice(artiekels));
+            @Override
+            public void handle(MouseEvent event) {
+                String artCode = codeTextField.getText();
+
+                try {
+                    if (!service.bestaandeArt(artCode)) {
+                        error.setVisible(true);
+                    }
+                    error.setVisible(false);
+
+                    kader.setItems(service.deleteArtiekel(artCode));
+
+                    totaal.setText("Totaal " + service.getTotalPriceFromObList());
 
                     VBox vbox = new VBox(kader, totaal);
 
@@ -82,5 +107,14 @@ public class KassaTab extends GridPane {
                 }
             }
         });
+
     }
-}
+
+    @Override
+    public void update(Observable o) throws FileNotFoundException {
+        if (o instanceof Service) {
+                //updateArticleOverviewTable(o);
+            }
+        }
+
+    }

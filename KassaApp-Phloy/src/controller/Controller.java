@@ -16,41 +16,6 @@ import java.util.Scanner;
 
 public class Controller {
 
-    private LoadSaveFactory loadSaveFactory;
-
-    //getAllArticles
-    public ObservableList<Artiekel> getArtiekelen() throws FileNotFoundException {
-        loadSaveFactory = new LoadSaveFactory();
-
-        ObservableList<Artiekel>artiekels = FXCollections.observableArrayList();
-
-        //artiekelen halen in een map
-        loadSaveFactory.createLoadSave(readFromProperties()).load(loadSaveFactory.getFile()).forEach((key, value) -> {
-            //ArrayList<String> test = new ArrayList<String>();
-
-            try {// Artikel maken adhv key + value in de map
-                String code = key;
-                String omschrijving = value.get(0);
-                String groep = value.get(1);
-                String prijs = value.get(2);
-                String voorraad = value.get(3);
-
-                Artiekel a = new Artiekel();
-
-                a.setCode(code);
-                a.setOmschrijving(omschrijving);
-                a.setGroep(groep);
-                a.setPrijs(prijs);
-                a.setVoorraad(voorraad);
-
-                artiekels.add(a);// toevoegen aan de obervable list
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
-        return artiekels;
-    }
-
     public void writeToProperties(String s){
         Properties prop = new Properties();
 
